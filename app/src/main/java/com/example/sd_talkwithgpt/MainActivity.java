@@ -1,13 +1,16 @@
 package com.example.sd_talkwithgpt;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.speech.RecognizerIntent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,11 +19,14 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-
     private ImageView iv_mic;
     private TextView tv_Speech_to_text, answer_of_gpt;
+    private ScrollView scrollView;
     private static final int REQUEST_CODE_SPEECH_INPUT = 1;
     private static String userText;
+    private static String responseText;
+    private static String textOfAll = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
         iv_mic = findViewById(R.id.iv_mic);
         tv_Speech_to_text = findViewById(R.id.tv_speech_to_text);
-        answer_of_gpt = findViewById(R.id.answer_of_gpt);
+        //answer_of_gpt = findViewById(R.id.answer_of_gpt);
+        scrollView = findViewById(R.id.scrollView);
+
+        Window window = getWindow();
+        window.setStatusBarColor(Color.parseColor("#f0f1f2"));
 
         iv_mic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,8 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT);
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     Toast.makeText(MainActivity.this, " " + e.getMessage(),
                                     Toast.LENGTH_SHORT).show();
                 }
@@ -64,7 +73,11 @@ public class MainActivity extends AppCompatActivity {
                         RecognizerIntent.EXTRA_RESULTS);
 
                 userText = Objects.requireNonNull(result).get(0);
-                tv_Speech_to_text.setText("Your message\n--------------------------\n\n" + userText);
+                textOfAll += "\n\n + " + userText;
+
+                tv_Speech_to_text.setText(textOfAll);
+
+                setScrollToBottom();
 
                 sendAQuestion(userText);
             }
@@ -113,9 +126,15 @@ public class MainActivity extends AppCompatActivity {
 //                                String out = "";
 //                                out += finalResponseTextFromGpt.replaceAll("\"", "");
 //                                System.out.println("OUT : " + out.replaceAll("[\\t\\n\\r]+", " "));
-                                answer_of_gpt.setText("Answer From GPT\n-------------------------------\n\n" + sb.substring(1, sb.length()-1));
+                                textOfAll += "\n - " + sb.substring(1, sb.length()-1);
+                                tv_Speech_to_text.setText(textOfAll);
+                                setScrollToBottom();
+                                //answer_of_gpt.setText(sb.substring(1, sb.length()-1));
                             } else {
-                                answer_of_gpt.setText("There is an error :(");
+                                //answer_of_gpt.setText("There is an error :(");
+                                textOfAll += "\n - " + "There is an error :(";
+                                tv_Speech_to_text.setText(textOfAll);
+                                setScrollToBottom();
                             }
                         }
                     });
@@ -126,13 +145,21 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("ASKGPT", "ERROR : " + e);
                     }
 
-                    answer_of_gpt.setText("There is an error :(");
+                    //answer_of_gpt.setText("There is an error :(");
+                    textOfAll += "\n - " + "There is an error :(";
+                    tv_Speech_to_text.setText(textOfAll);
+                    setScrollToBottom();
                 }
             } catch (Exception e) {
                 Log.e("ASKGPT", "ERROR : " + e);
 
-                answer_of_gpt.setText("There is an error :(");
+                //answer_of_gpt.setText("There is an error :(");
+                textOfAll += "\n - " + "There is an error :(";
+                tv_Speech_to_text.setText(textOfAll);
+                setScrollToBottom();
             }
+
+            setScrollToBottom();
 
             return null;
         }
@@ -146,6 +173,10 @@ public class MainActivity extends AppCompatActivity {
             index = builder.indexOf(from, index);
         }
 
-        System.out.println("SB RA :: " + builder);
+        //System.out.println("SB RA :: " + builder);
+    }
+
+    public void setScrollToBottom() {
+        scrollView.post(() -> scrollView.scrollTo(0, scrollView.getBottom()));
     }
 }

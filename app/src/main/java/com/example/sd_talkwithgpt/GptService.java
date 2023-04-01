@@ -68,7 +68,8 @@ public class GptService extends AsyncTask<String, String, String> {
                         .url(urlParameter)
                         .method("POST", body)
                         .addHeader("Content-Type", "application/json")
-                        .addHeader("Authorization", "Bearer " + "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")
+                        //.addHeader("Authorization", "Bearer " + "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")
+                        .addHeader("Authorization", "Bearer " + "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")
                         .build();
                 response = client.newCall(request).execute();
 
