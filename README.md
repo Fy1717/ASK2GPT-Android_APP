@@ -1,4 +1,4 @@
-<h1 align="center">ASK2GPT-ANDROID_APP</h1>
+<h1 align="center">ASK2GPT</h1>
 
 <p>Ask2GPT uygulaması üzerinden ses kaydı ile ChatGPT'ye bağlanıp iletişim kurabilirsiniz<p>
 
