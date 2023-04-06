@@ -13,18 +13,16 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView iv_mic;
-    private TextView tv_Speech_to_text, answer_of_gpt;
+    private TextView tv_Speech_to_text;
     private ScrollView scrollView;
     private static final int REQUEST_CODE_SPEECH_INPUT = 1;
     private static String userText;
-    private static String responseText;
     private static String textOfAll = "";
 
 
@@ -35,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
         iv_mic = findViewById(R.id.iv_mic);
         tv_Speech_to_text = findViewById(R.id.tv_speech_to_text);
-        //answer_of_gpt = findViewById(R.id.answer_of_gpt);
         scrollView = findViewById(R.id.scrollView);
 
         Window window = getWindow();
@@ -50,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                         RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
                         Locale.getDefault());
-                intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to text");
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "GPT'ye sor");
 
                 try {
                     startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT);
@@ -64,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
-                                    @Nullable Intent data)
-    {
+                                    @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_SPEECH_INPUT) {
             if (resultCode == RESULT_OK && data != null) {
@@ -90,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
             new AsyncTask().execute();
         } catch (Exception e) {
-            System.out.println("ERRORGPT2 : " + e.getLocalizedMessage());
+            Log.e("ERRORINACTIVITY", "ERROR : " + e.getLocalizedMessage());
         }
     }
 
@@ -98,15 +94,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             try {
-                if (Gpt3.message != null) {
-                    String responseString = Gpt3.message;
-
-                    //System.out.println("000000000000 : " + responseString);
+                if (Gpt3.getMessage() != null) {
+                    String responseString = Gpt3.getMessage();
 
                     String responseTextFromGpt = responseString.split("text\":")[1];
                     responseTextFromGpt = responseTextFromGpt.split(",\"index\"")[0];
-
-                    //System.out.println("1111111111111 : " + responseTextFromGpt);
 
                     String finalResponseTextFromGpt = responseTextFromGpt;
                     runOnUiThread(new Runnable() {
@@ -116,22 +108,15 @@ public class MainActivity extends AppCompatActivity {
                                 StringBuilder sb = new StringBuilder("");
                                 sb.append(finalResponseTextFromGpt);
 
-                                //System.out.println("22222222222 ::: " + finalResponseTextFromGpt);
-
                                 replaceAll(sb, "\\n", " ");
                                 replaceAll(sb, "\"", "");
 
-                                //System.out.println("33333333333 ::: " + sb);
-
-//                                String out = "";
-//                                out += finalResponseTextFromGpt.replaceAll("\"", "");
-//                                System.out.println("OUT : " + out.replaceAll("[\\t\\n\\r]+", " "));
-                                textOfAll += "\n - " + sb.substring(1, sb.length()-1);
-                                tv_Speech_to_text.setText(textOfAll);
-                                setScrollToBottom();
-                                //answer_of_gpt.setText(sb.substring(1, sb.length()-1));
+                                if (sb.length() > 1) {
+                                    textOfAll += "\n - " + sb.substring(1, sb.length()-1);
+                                    tv_Speech_to_text.setText(textOfAll);
+                                    setScrollToBottom();
+                                }
                             } else {
-                                //answer_of_gpt.setText("There is an error :(");
                                 textOfAll += "\n - " + "There is an error :(";
                                 tv_Speech_to_text.setText(textOfAll);
                                 setScrollToBottom();
@@ -145,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("ASKGPT", "ERROR : " + e);
                     }
 
-                    //answer_of_gpt.setText("There is an error :(");
                     textOfAll += "\n - " + "There is an error :(";
                     tv_Speech_to_text.setText(textOfAll);
                     setScrollToBottom();
@@ -153,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 Log.e("ASKGPT", "ERROR : " + e);
 
-                //answer_of_gpt.setText("There is an error :(");
                 textOfAll += "\n - " + "There is an error :(";
                 tv_Speech_to_text.setText(textOfAll);
                 setScrollToBottom();
@@ -167,13 +150,12 @@ public class MainActivity extends AppCompatActivity {
 
     public static void replaceAll(StringBuilder builder, String from, String to) {
         int index = builder.indexOf(from);
+
         while (index != -1) {
             builder.replace(index, index + from.length(), to);
-            index += to.length(); // Move to the end of the replacement
+            index += to.length();
             index = builder.indexOf(from, index);
         }
-
-        //System.out.println("SB RA :: " + builder);
     }
 
     public void setScrollToBottom() {

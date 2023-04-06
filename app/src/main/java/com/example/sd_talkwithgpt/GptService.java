@@ -2,14 +2,11 @@ package com.example.sd_talkwithgpt;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -20,6 +17,7 @@ public class GptService extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... uri) {
         String urlParameter = "https://api.openai.com/v1/completions";
+        String apiToken = "YOUR_API_TOKEN";
         String message = uri[0];
 
         JSONObject jsonObject = new JSONObject();
@@ -68,27 +66,26 @@ public class GptService extends AsyncTask<String, String, String> {
                         .url(urlParameter)
                         .method("POST", body)
                         .addHeader("Content-Type", "application/json")
-                        //.addHeader("Authorization", "Bearer " + "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")
-                        .addHeader("Authorization", "Bearer " + "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")
+                        .addHeader("Authorization", "Bearer " + apiToken)
                         .build();
                 response = client.newCall(request).execute();
 
                 String responseString = response.body().string();
-                System.out.println("RESPONSE : " + responseString);
+                System.out.println("RESPONSE FROM GPT: " + responseString);
 
                 if (response.code() == 200) {
-                    Gpt3.message = responseString;
+                    Gpt3.setMessage(responseString);
                 } else {
-                    Log.e("GPTSERVICE", "ERROR1 (Response code): " + response.code());
+                    Log.e("GPTSERVICE", "ERROR (Response code): " + response.code());
                 }
             } catch (Exception e) {
-                Log.e("GPTSERVICE", "ERROR2 : " + e);
+                Log.e("GPTSERVICE", "ERROR : " + e.getLocalizedMessage());
             }
         } catch (Exception e) {
-            Log.e("GPTSERVICE", "ERROR3 : " + e.getLocalizedMessage());
+            Log.e("GPTSERVICE", "ERROR : " + e.getLocalizedMessage());
         }
 
-        return "responseString";
+        return "";
     }
 }
 
