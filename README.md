@@ -6,7 +6,7 @@
 
 <h3><strong>Gerekli Güncellemeler</strong></h3>
 
-<p>Geliştiriciler uygulamayı kullanmadan önce OpenAI web sitesi üzerinden API_TOKEN oluşturup projede gerekli alanı güncellemelidir.</p> <a href='https://platform.openai.com/account/api-keys'> OpenAI WebSite - API KEYS </a>
+<p>Geliştiriciler uygulamayı kullanmadan önce OpenAI web sitesi üzerinden API_TOKEN oluşturup projede gerekli alanı güncellemelidir.</p> <a href='https://platform.openai.com/account/api-keys'> OpenAI WebSite - API KEYS (for gpt-3.5-turbo-instruct model)</a>
 
 <br/>
 <br/>
