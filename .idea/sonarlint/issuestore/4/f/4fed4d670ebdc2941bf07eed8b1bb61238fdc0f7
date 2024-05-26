@@ -1,0 +1,36 @@
+
+d
+java:S1192Y"IDefine a constant instead of duplicating this literal "ERROR : " 3 times.(Œ¼¨‰ÿÿÿÿÿ
+`
+java:S1192s"EDefine a constant instead of duplicating this literal "
+ - " 4 times.(É½ıîùÿÿÿÿ
+k
+java:S1192x"UDefine a constant instead of duplicating this literal "There is an error :(" 3 times.(ı¤Üç
+J
+java:S1066C"/Merge this if statement with the enclosing one.(¬‹î°ûÿÿÿÿ
+P
+java:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+>
+java:S1604)"(Make this anonymous inner class a lambda(ìéıú
+C
+java:S1604h"(Make this anonymous inner class a lambda(˜ã¯şÿÿÿÿ
+e	java:S116"QRename this field "iv_mic" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©ú’
+q	java:S116"\Rename this field "tv_Speech_to_text" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(š®­
+j
+java:S1450"URemove the "iv_mic" field and declare it as a local variable in the relevant methods.(©ú’
+m
+java:S1450"WRemove the "userText" field and declare it as a local variable in the relevant methods.(–ê¤Ğ
+L
+java:S2696G"6Make the enclosing method "static" or remove this set.(Å„‘
+L
+java:S2696H"6Make the enclosing method "static" or remove this set.(ÑğÄ¢
+Q
+java:S2696s"6Make the enclosing method "static" or remove this set.(É½ıîùÿÿÿÿ
+L
+java:S2696x"6Make the enclosing method "static" or remove this set.(ı¤Üç
+u
+java:S2142"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€
+M
+java:S2696…"6Make the enclosing method "static" or remove this set.(ı¤Üç
+M
+java:S2696Œ"6Make the enclosing method "static" or remove this set.(ı¤Üç

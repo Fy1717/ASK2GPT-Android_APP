@@ -1,0 +1,29 @@
+
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+f
+6app/src/main/java/com/example/sd_talkwithgpt/Gpt3.java,3/7/37e0349207a8e72c5b29d8075d8ef575af9514bc
+l
+<app/src/main/java/com/example/sd_talkwithgpt/GptService.java,8/1/81c4b56e923a9af2722fcbc9f0372dc9c0b4eec4
+n
+>app/src/main/java/com/example/sd_talkwithgpt/MainActivity.java,4/f/4fed4d670ebdc2941bf07eed8b1bb61238fdc0f7
+s
+Capp/src/main/java/com/example/sd_talkwithgpt/view/MainActivity.java,5/4/5472c0c102a44c9a7a6f2adfaa53c7ad06a3dd4c
+@
+app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
+s
+Capp/src/main/java/com/example/sd_talkwithgpt/model/GptResponse.java,e/c/ecf373a23beff680d7d054c1a6e4f1e5b75d45f7
+r
+Bapp/src/main/java/com/example/sd_talkwithgpt/model/GptRequest.java,a/8/a8c4a4b3b6ee73dcea6df3494de1d1a89680c997
+x
+Happ/src/main/java/com/example/sd_talkwithgpt/viewmodel/GptViewModel.java,1/0/10d22c1a122578efbc4d09263254f8b63c309a86
+z
+Japp/src/main/java/com/example/sd_talkwithgpt/repository/GptRepository.java,5/d/5d62065aecd0dde2435cbe44a1fe726b3e9c26ce
+t
+Dapp/src/main/java/com/example/sd_talkwithgpt/service/ApiService.java,b/5/b5ccb37940af5afd7bb8ac9a7b428a06a689f018
+x
+Happ/src/main/java/com/example/sd_talkwithgpt/service/RetrofitClient.java,2/d/2de04e93b6c23453e8c0ed10f0ee951fc9a7a760
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+A
+gradle.properties,2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4

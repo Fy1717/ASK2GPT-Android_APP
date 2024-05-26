@@ -1,14 +1,9 @@
-package com.example.sd_talkwithgpt;
+package com.example.sd_talkwithgpt.model;
 
 import com.google.gson.JsonArray;
 
-public class Gpt3 {
+public class GptResponse {
     private String id;
-    private JsonArray choices;
-    private String object;
-    private int created;
-    private String model;
-    private static String message;
 
     public String getId() {
         return id;
@@ -50,20 +45,8 @@ public class Gpt3 {
         this.model = model;
     }
 
-    public static String getMessage() {
-        return message;
-    }
-
-    public static void setMessage(String message) {
-        Gpt3.message = message;
-    }
-
-    public Gpt3(String id, JsonArray choices, String object, int created, String model) {
-        super();
-        this.id = id;
-        this.choices = choices;
-        this.object = object;
-        this.created = created;
-        this.model = model;
-    }
+    private JsonArray choices;
+    private String object;
+    private int created;
+    private String model;
 }
