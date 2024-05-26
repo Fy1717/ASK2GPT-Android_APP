@@ -21,7 +21,7 @@ public class GptRepository {
     }
 
     public void sendRequest(String prompt, final ResponseCallback callback) {
-        Call<JsonObject> call = apiService.getCompletion("Bearer sk-proj-ovtLoHuSBwJ6p2heo3EYT3BlbkFJGbxvnrVfownn9xNiX8LM", new GptRequest(prompt));
+        Call<JsonObject> call = apiService.getCompletion("Bearer TOKEN", new GptRequest(prompt));
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
